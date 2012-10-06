@@ -16,7 +16,7 @@ public class App
         final Processor processor = new Processor(true);
         final XQueryCompiler queryCompiler = processor.newXQueryCompiler();
 
-        final InputStream query = App.class.getResourceAsStream("/coverage/sample1.xqx");
+        final InputStream query = App.class.getResourceAsStream("/coverage/sample1.xq");
         assert query != null;
 
 
