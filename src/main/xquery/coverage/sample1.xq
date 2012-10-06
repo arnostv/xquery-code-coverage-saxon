@@ -1,1 +1,1 @@
-Hello world
+<message>Hello world</message>
