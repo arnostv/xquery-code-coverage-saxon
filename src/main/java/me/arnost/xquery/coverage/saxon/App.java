@@ -22,14 +22,17 @@ import java.util.Iterator;
 public class App 
 {
     public static void main( String[] args ) throws SaxonApiException, IOException, URISyntaxException {
+        final String xQueryProgram = "/coverage/sample1.xq";
+
+
         Configuration config  = Configuration.newConfiguration();
         config.setTraceListener(new XQueryTraceListener());
         final Processor processor = new Processor(config);
 
         final XQueryCompiler queryCompiler = processor.newXQueryCompiler();
-        queryCompiler.setBaseURI(new URI("my:/coverage"));
+        queryCompiler.setBaseURI(new URI("my:"+ xQueryProgram));
 
-        final InputStream query = App.class.getResourceAsStream("/coverage/sample1.xq");
+        final InputStream query = App.class.getResourceAsStream(xQueryProgram);
         assert query != null;
 
 
@@ -38,7 +41,7 @@ public class App
         underlyingStaticContext.setModuleURIResolver(new ModuleURIResolver() {
             @Override
             public StreamSource[] resolve(String s, String s1, String[] strings) throws XPathException {
-                System.out.println(s + " -> " + s1 + " : " + Arrays.asList(strings));
+                System.out.println(s + " <- " + s1 + " : " + Arrays.asList(strings));
                 if (s!=null && s.startsWith("my:")) {
                     final InputStream query = App.class.getResourceAsStream(s.substring(3));
                     final StreamSource source = new StreamSource(query, s);
