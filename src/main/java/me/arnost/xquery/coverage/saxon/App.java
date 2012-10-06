@@ -4,7 +4,6 @@ import net.sf.saxon.Configuration;
 import net.sf.saxon.lib.ModuleURIResolver;
 import net.sf.saxon.query.StaticQueryContext;
 import net.sf.saxon.s9api.*;
-import net.sf.saxon.trace.XQueryTraceListener;
 import net.sf.saxon.trans.XPathException;
 
 import javax.xml.transform.stream.StreamSource;
@@ -26,7 +25,8 @@ public class App
 
 
         Configuration config  = Configuration.newConfiguration();
-        config.setTraceListener(new XQueryTraceListener());
+        //config.setTraceListener(new XQueryTraceListener());
+        config.setTraceListener(new CoverageTraceListener());
         final Processor processor = new Processor(config);
 
         final XQueryCompiler queryCompiler = processor.newXQueryCompiler();
