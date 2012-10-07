@@ -9,6 +9,7 @@ public class ReportPlaintextRenderer {
         final Set<Integer> coveredLines = report.coveredLines();
 
         for (int i = 1, l = report.numberOfLines(); i <= l; i++) {
+            sb.append(String.format("%4d ", i));
             if (coveredLines.contains(i)) {
                 sb.append("+ ");
             } else {

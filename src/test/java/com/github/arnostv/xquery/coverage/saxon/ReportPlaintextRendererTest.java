@@ -18,6 +18,7 @@ public class ReportPlaintextRendererTest {
         List<String> lines = new ArrayList<String>();
         StringBuilder expected = new StringBuilder();
         for (int i = 1; i <= 10; i++) {
+            expected.append(String.format("%4d ", i));
             if (coveredLines.contains(i)) {
                 expected.append("+ Module line " + i + "\n");
 

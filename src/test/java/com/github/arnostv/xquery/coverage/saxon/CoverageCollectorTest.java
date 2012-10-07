@@ -3,13 +3,9 @@ package com.github.arnostv.xquery.coverage.saxon;
 import net.sf.saxon.lib.ModuleURIResolver;
 import org.junit.Test;
 
-import javax.xml.transform.stream.StreamSource;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import java.io.StringReader;
 import java.util.Set;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import static com.google.common.collect.ImmutableSet.of;
 import static org.hamcrest.CoreMatchers.allOf;
@@ -19,27 +15,8 @@ import static org.junit.internal.matchers.StringContains.containsString;
 
 public class CoverageCollectorTest {
 
-    private static final Pattern pattern = Pattern.compile(".+_([0-9]+)\\.xq");
-    ;
 
-
-    ModuleURIResolver moduleURIResolver = new ModuleURIResolver() {
-        @Override
-        public StreamSource[] resolve(String moduleURI, String baseURI, String[] locations) {
-            final Matcher matcher = pattern.matcher(moduleURI);
-            if (!matcher.matches()) {
-                throw new RuntimeException("Expected URI patters is " + pattern.pattern() + " but URI is " + moduleURI);
-            }
-            ;
-            final String group = matcher.group(1);
-            int numberOfLines = Integer.parseInt(group);
-            StringBuffer sb = new StringBuffer();
-            for (int i = 1; i <= numberOfLines; i++) {
-                sb.append("Line of code ").append(i).append('\n');
-            }
-            return new StreamSource[]{new StreamSource(new StringReader(sb.toString()))};
-        }
-    };
+    ModuleURIResolver moduleURIResolver = new DummyModuleURIResolver();
 
 
     @Test
@@ -105,4 +82,5 @@ public class CoverageCollectorTest {
         assertThat(report.coveredLines(), is(covered));
         assertThat(report.unusedLines(), is(uncovered));
     }
+
 }

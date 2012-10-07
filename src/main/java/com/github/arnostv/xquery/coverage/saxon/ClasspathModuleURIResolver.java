@@ -22,7 +22,7 @@ public class ClasspathModuleURIResolver implements ModuleURIResolver {
 
     @Override
     public StreamSource[] resolve(String s, String s1, String[] strings) {
-        LOG.debug(s + " <- " + s1 + " : " + Arrays.asList(strings));
+        LOG.debug(s + " <- " + s1 + " : " + (strings != null ? Arrays.asList(strings) : ""));
         if (s != null && s.startsWith(uriScheme)) {
             final InputStream query = App.class.getResourceAsStream(s.substring(3));
             final StreamSource source = new StreamSource(query, s);

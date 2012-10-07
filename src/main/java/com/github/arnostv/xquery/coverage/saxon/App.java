@@ -48,6 +48,10 @@ public class App {
             System.out.println(item);
         }
 
-        collector.printAll(System.out);
+        //collector.printAll(System.out);
+
+        System.out.println("--------------------------\n--------------------------");
+
+        new CoverageSuiteReportWriter(System.out, collector, moduleURIResolver).writeReport();
     }
 }
