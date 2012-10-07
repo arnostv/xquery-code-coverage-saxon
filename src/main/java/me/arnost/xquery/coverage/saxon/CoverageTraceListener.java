@@ -13,6 +13,12 @@ public class CoverageTraceListener implements TraceListener {
 
     private PrintStream out = System.err;
 
+    private final CoverageCollector coverageCollector;
+
+    public CoverageTraceListener(CoverageCollector coverageCollector) {
+        this.coverageCollector = coverageCollector;
+    }
+
     @Override
     public void setOutputDestination(PrintStream printStream) {
 //        System.out.println("Output is " + printStream);
@@ -34,7 +40,9 @@ public class CoverageTraceListener implements TraceListener {
     @Override
     public void enter(InstructionInfo instructionInfo, XPathContext xPathContext) {
         counter++;
-        out.println("Entering " + instructionInfo + "  " + instructionInfo.getLineNumber()+"/"+instructionInfo.getColumnNumber()+" @ " + instructionInfo.getSystemId() + "   #" + counter);
+        CoverageEvent event = new CoverageEvent(instructionInfo.getSystemId(), instructionInfo.getObjectName().getDisplayName(),instructionInfo.getLineNumber());
+        coverageCollector.register(event);
+        out.println("Entering " + instructionInfo + "  $$$ " + instructionInfo.getObjectName().getDisplayName() + " * " + instructionInfo.getLineNumber()+"/"+instructionInfo.getColumnNumber()+" @ " + instructionInfo.getSystemId() +  " " + instructionInfo.getClass() + "   #" + counter);
     }
 
     @Override

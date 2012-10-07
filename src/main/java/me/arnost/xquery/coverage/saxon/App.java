@@ -26,7 +26,8 @@ public class App
 
         Configuration config  = Configuration.newConfiguration();
         //config.setTraceListener(new XQueryTraceListener());
-        config.setTraceListener(new CoverageTraceListener());
+        CoverageCollector collector = new CoverageCollector();
+        config.setTraceListener(new CoverageTraceListener(collector));
         final Processor processor = new Processor(config);
 
         final XQueryCompiler queryCompiler = processor.newXQueryCompiler();
@@ -60,5 +61,7 @@ public class App
             final XdmItem item = iterator.next();
             System.out.println(item);
         }
+
+         collector.printAll(System.out);
     }
 }
