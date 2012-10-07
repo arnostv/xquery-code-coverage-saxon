@@ -40,15 +40,15 @@ public class CoverageTraceListener implements TraceListener {
     @Override
     public void enter(InstructionInfo instructionInfo, XPathContext xPathContext) {
         counter++;
-        CoverageEvent event = new CoverageEvent(instructionInfo.getSystemId(), instructionInfo.getObjectName().getDisplayName(),instructionInfo.getLineNumber());
+        CoverageEvent event = new CoverageEvent(instructionInfo.getSystemId(), instructionInfo.getObjectName().getDisplayName(), instructionInfo.getLineNumber());
         coverageCollector.register(event);
-        out.println("Entering " + instructionInfo + "  $$$ " + instructionInfo.getObjectName().getDisplayName() + " * " + instructionInfo.getLineNumber()+"/"+instructionInfo.getColumnNumber()+" @ " + instructionInfo.getSystemId() +  " " + instructionInfo.getClass() + "   #" + counter);
+        out.println("Entering " + instructionInfo + "  $$$ " + instructionInfo.getObjectName().getDisplayName() + " * " + instructionInfo.getLineNumber() + "/" + instructionInfo.getColumnNumber() + " @ " + instructionInfo.getSystemId() + " " + instructionInfo.getClass() + "   #" + counter);
     }
 
     @Override
     public void leave(InstructionInfo instructionInfo) {
         counter++;
-        out.println("Leaving " + instructionInfo + "  " + instructionInfo.getLineNumber()+"/"+instructionInfo.getColumnNumber()+" @ " + instructionInfo.getSystemId() + "   #" + counter);
+        out.println("Leaving " + instructionInfo + "  " + instructionInfo.getLineNumber() + "/" + instructionInfo.getColumnNumber() + " @ " + instructionInfo.getSystemId() + "   #" + counter);
     }
 
     @Override
