@@ -1,4 +1,4 @@
-package me.arnost.xquery.coverage.saxon;
+package com.github.arnostv.xquery.coverage.saxon;
 
 import net.sf.saxon.Controller;
 import net.sf.saxon.expr.XPathContext;

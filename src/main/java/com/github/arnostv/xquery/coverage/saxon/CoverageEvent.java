@@ -1,4 +1,4 @@
-package me.arnost.xquery.coverage.saxon;
+package com.github.arnostv.xquery.coverage.saxon;
 
 public class CoverageEvent {
     private final String systemId;

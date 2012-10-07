@@ -1,4 +1,4 @@
-package me.arnost.xquery.coverage.saxon;
+package com.github.arnostv.xquery.coverage.saxon;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

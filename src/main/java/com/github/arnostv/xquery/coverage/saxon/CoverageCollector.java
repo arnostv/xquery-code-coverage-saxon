@@ -1,4 +1,4 @@
-package me.arnost.xquery.coverage.saxon;
+package com.github.arnostv.xquery.coverage.saxon;
 
 import java.io.PrintStream;
 import java.util.ArrayList;
