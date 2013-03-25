@@ -23,7 +23,7 @@ public class CoverageCollector {
     }
 
     public Set<String> involvedModules() {
-        Set<String> modules = new HashSet<String>();
+        Set<String> modules = new LinkedHashSet<String>();
         for (CoverageEvent event : events) {
             modules.add(event.getSystemId());
         }
