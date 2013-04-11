@@ -22,9 +22,9 @@ public class CoverageSuiteReportWriter {
         final Set<String> involvedModules = collector.involvedModules();
 
         for (String module : involvedModules) {
-//            if (module!=null) {
+            if (module!=null) {  // FIXME this not-null check should not be here, it's just to avoid some wrong events with null module name
                 writeModuleReport(module);
-//            }
+            }
         }
     }
 
