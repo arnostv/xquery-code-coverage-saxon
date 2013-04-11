@@ -22,7 +22,9 @@ public class CoverageSuiteReportWriter {
         final Set<String> involvedModules = collector.involvedModules();
 
         for (String module : involvedModules) {
-            writeModuleReport(module);
+//            if (module!=null) {
+                writeModuleReport(module);
+//            }
         }
     }
 

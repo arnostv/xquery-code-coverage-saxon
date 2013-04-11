@@ -19,7 +19,7 @@ public class App {
 
     public static void main(String[] args) throws SaxonApiException, IOException, URISyntaxException {
         System.out.println("org.slf4j.simpleLogger.defaultLogLevel=" + System.getProperty("org.slf4j.simpleLogger.defaultLogLevel"));
-        final String xQueryProgram = "/coverage/sample1.xq";
+        final String xQueryProgram = "/coverage/runner.xq";
 
 
         Configuration config = Configuration.newConfiguration();
@@ -39,10 +39,13 @@ public class App {
         final StaticQueryContext underlyingStaticContext = queryCompiler.getUnderlyingStaticContext();
         final ModuleURIResolver moduleURIResolver = new ClasspathModuleURIResolver(URI_SCHEME);
         underlyingStaticContext.setModuleURIResolver(moduleURIResolver);
+        underlyingStaticContext.setCodeInjector(new TracingCodeInjector(true));
+
         final XQueryExecutable executable = queryCompiler.compile(query);
 
         final XQueryEvaluator evaluator = executable.load();
         final Iterator<XdmItem> iterator = evaluator.iterator();
+        System.out.println("--- program result ---");
         while (iterator.hasNext()) {
             final XdmItem item = iterator.next();
             System.out.println(item);
