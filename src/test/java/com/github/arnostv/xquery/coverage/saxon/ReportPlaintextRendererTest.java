@@ -27,6 +27,8 @@ public class ReportPlaintextRendererTest {
             }
             lines.add("Module line " + i);
         }
+        expected.append("\n");
+        expected.append("Covered 4 of 10 lines (40%)");
         CoverageReport report = new CoverageReport("module1.xq", lines, coveredLines);
 
 
